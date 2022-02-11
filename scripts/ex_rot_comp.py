@@ -16,12 +16,13 @@ if __name__ == '__main__':
 	# define a 3D rotation about z axes
 	Rz = rbm.rot_z(theta)
 	# calculate a total rotation via CURRENT FRAMES
-	R = np.matmul(Ry, Rz)
+	# ORDER MATTERS!!!!!
+	R = np.matmul(Ry, Rz) # Rotate about Y axis, THEN about current frame
 	# calculate the results of rotation
 	v01 = R.dot(v0)
 	print('The transformed vector (rotations about CURRENT FRAME) is:\n',v01)
 	# calculate a total rotation via FIXED FRAME
-	R = np.matmul(Rz, Ry)
+	R = np.matmul(Rz, Ry) # Flip order!
 	# calculate the results of rotation
 	v01 = R.dot(v0)
 	print('The transformed vector (rotations about FIXED FRAME) is:\n',v01)
